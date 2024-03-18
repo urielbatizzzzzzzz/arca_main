@@ -14,21 +14,21 @@ app.get("/", (req, res) =>{
         if (error){
             console.log(error)
         }else{
-            res.render("../public/index.ejs", {table:table})
+            res.render("../src/index.ejs", {table:table})
         }
     })
 });
 
 app.get("/add", (req, res) =>{
-    res.render("../public/create.ejs",{var:"hola"})
+    res.render("../src/create.ejs",{var:"hola"})
 });
 
 app.get("/validate.js", (req, rea) =>{
-    res.redirect("..//public/validate.js")
+    res.redirect("../src/validate.js")
 })
 
 app.post("/edit", (req, res) =>{
-    res.render("../public/edit.ejs",{data:req})
+    res.render("../src/edit.ejs",{data:req})
 });
 
 app.post("/delete", (req, res) =>{

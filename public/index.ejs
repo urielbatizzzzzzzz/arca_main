@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>Recomendaciones De libros</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://vercel.live;">
+</head>
+
+<body style="background-color: bisque;">
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr  class="table table-dark">
+                    <th scope="col" align="center">Producto</th>
+                    <th scope="col" align="center">Marca</th>
+                    <th scope="col" align="center">Proveedor</th>
+                    <th scope="col" align="center">Existencias</th>
+                    <th scope="col" align="center">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% table.forEach((libros)=>{ %>
+                    <tr>
+                        <td>
+                            <%= libros.libro_recomendado %>
+                        </td>
+                        <td>
+                            <%= libros.genero_recomendado %>
+                        </td>
+                        <td>
+                            <%= libros.nombre_persona %>
+                        </td>
+                        <td>
+                            <%= libros.edad %>
+                        </td>
+                        <td>
+                            <%= libros.libros_leidos %>
+                        </td>
+                        <td>
+                            <form action="/edit" method="post">
+                                <input type="hidden" class="form-control" id="persona" name="persona" onkeyup="this.value=NumText(this.value)" required value="<%= libros.nombre_persona %>">
+                                <input type="hidden" class="form-control" id="edad" name="edad" value="<%= libros.edad %>"">
+                                <input type="hidden" class="form-control" id="franchise" name="franchise" onkeyup="this.value=Numeros(this.value)" required value="<%= libros.libros_leidos%>">
+                                <input type="hidden" class="form-control" id="name" name="name" onkeyup="this.value=NumText(this.value)" required value="<%= libros.libro_recomendado%>">
+                                <input type="hidden" class="form-control" id="year" name="year" onkeyup="this.value=NumText(this.value)" required value="<%= libros.genero_recomendado%>">
+                                <button type="submmit" class="btn btn-light">Editar</button>
+                            </form>
+                            <form action="/delete" method="post">
+                                <input type="hidden" name="name" value="<%=libros.libro_recomendado %>">
+                                <button type="submmit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% })%>
+            </tbody>
+        </table>
+        <a type="button" class="btn btn-primary" href="/add">Añadir</a>
+    </div>
+</body>
+
+</html>
